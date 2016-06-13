@@ -8,8 +8,12 @@ So that I can see saved links
 I want to see the list of links
 
 As a User
-So that I can update saved links
-I want to be able to add links
+So that I find websites I have added most recently
+I want to view the list in descending chronological order
+
+As a User
+So that I can save a webpage
+I want to be able to add the webpage's url and title 
 
 As a User
 So that I can be organised
