@@ -14,7 +14,7 @@ property :url , String
 end
 
 #set up a connection with the database
-DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{ENV["RACK_ENV"]}")
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/bookmark_manager_#{ENV["RACK_ENV"]}")
 #checking that everything we wrote / the way we structured it is correct
 DataMapper.finalize
 #build the columsn and rows

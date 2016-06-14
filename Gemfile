@@ -7,6 +7,8 @@ gem 'dm-postgres-adapter'
 gem 'rspec-sinatra'
 gem 'capybara'
 gem 'database_cleaner'
+gem 'rspec'
+gem 'sinatra'
 
 
 
