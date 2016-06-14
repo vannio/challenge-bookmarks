@@ -1,8 +1,6 @@
 feature "Creating new links" do
   scenario "Adding a new link" do
-    visit('/links/new')
-    fill_in :title, with: "Makers Academy"
-    fill_in :url, with: "http://www.makersacademy.com"
+    fill_in_title_and_url
     click_button "Submit"
 
     expect(current_path).to eq('/links')
