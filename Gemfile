@@ -1,11 +1,7 @@
 source "https://rubygems.org"
 
+gem "data_mapper"
+gem "dm-postgres-adapter"
 
-group :test do
-  gem "data_mapper"
-  gem "dm-postgres-adapter"
-  gem "rspec"
-  gem "capybara"
-  gem "sinatra"
-  gem "rspec-sinatra"
-end
+
+BookmarkManager
