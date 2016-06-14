@@ -1,11 +1,11 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 ruby '2.3.1'
 
-gem 'data_mapper'
-gem 'dm-postgres-adapter'
+gem 'sinatra'
 gem 'rspec-sinatra'
-gem 'shotgun'
 gem 'rspec'
 gem 'capybara'
-gem 'sinatra'
+gem 'shotgun'
+gem 'data_mapper'
+gem 'dm-postgres-adapter'
