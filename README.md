@@ -29,5 +29,7 @@ I want to be able to filter links by tags
 ## Getting Started
 1. Clone this directory and `cd` into it
 1. Run `bundle install`
+1. Run `brew install postgresql` if you don't already have it
+1. Create a database in postgres called `bookmark_manager_test`
 1. To start the server, run `rackup -p 4567`
 1. Open a browser and go to [localhost:4567](http://localhost:4567)

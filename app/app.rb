@@ -3,8 +3,8 @@ require_relative 'models/link'
 
 class BookmarkManager < Sinatra::Base
 
-  get '/' do
-    erb :index
+  get '/links/new' do
+    erb :'links/new'
   end
 
   get '/links' do
@@ -12,7 +12,7 @@ class BookmarkManager < Sinatra::Base
     erb :'links/index'
   end
 
-  post '/success' do
+  post '/links' do
     Link.create(url: params[:url], title: params[:title])
     redirect '/links'
   end
