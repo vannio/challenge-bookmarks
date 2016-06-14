@@ -1,10 +1,10 @@
-require 'data_mapper'
-require 'dm-postgres-adapter'
-
 #A class which sets up the properties that we want our tables to have
 class Link 
 	#Datamapper allows us to communicate with the database subject using ruby syntax
 	include DataMapper::Resource
+
+	#Adds a series of methods to models which allow users to create relationships and retreive related models
+	has n, :tags, through: Resource
 
 #Setting the column headers for our table
 	property :id, Serial
@@ -13,9 +13,3 @@ class Link
 
 end
 
-#Sets up the connection with the database - localhost is where the information will be sent
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/bookmark_manager_#{ENV['RACK_ENV']}")
-#Checks that everything works - An error should come up in the terminal if something is incorrect
-DataMapper.finalize
-#Builds the table according to our previous code
-DataMapper.auto_upgrade!
