@@ -1,26 +1,35 @@
-<h1>Bookmark Manager</h1>
+# Bookmark Manager
 
-**User Stories**
+## Task
+Create a CRUDdy bookmark manager with Sinatra and Postgres
 
+### User Stories
 ```
 As a User
-So that I can see what I've saved
-I wish to see a list of links on the homepage
+So that I can see saved links
+I want to see the list of links
 
 As a User
-So that I can quickly find websites I recently bookmarked
-I would like to see links in descending chronological order
+So that I find websites I have added most recently
+I want to view the list in descending chronological order
 
 As a User
-So that I can remember more sites
-I wish to be able to add the site's address and title to my bookmark manager
+So that I can save a webpage
+I want to be able to add the webpage's url and title
 
 As a User
-So that I can categorise my bookmarks for ease of search
-I wish to be able to add a tag to my links in my bookmark manager
+So that I can be organised
+I want to be able to tag links
 
 As a User
-So that I can filter my view to find links on a particular topic
-I wish to be able to filter links by tag(s)
-
+So that I can easily access certain tags
+I want to be able to filter links by tags
 ```
+
+## Getting Started
+1. Clone this directory and `cd` into it
+1. Run `bundle install`
+1. Run `brew install postgresql` if you don't already have it
+1. Create a database in postgres called `bookmark_manager_test`
+1. To start the server, run `rackup -p 4567`
+1. Open a browser and go to [localhost:4567](http://localhost:4567)
