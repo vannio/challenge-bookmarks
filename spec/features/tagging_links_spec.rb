@@ -24,4 +24,14 @@ feature 'Adding tags' do
 		expect(link.tags.map(&:name)).to include('coding')
 
 	end
+
+	scenario 'User is able to view tags on the link page' do
+		visit('/links/new')
+		fill_in('url', with: 'http://www.makersacademy.com/')
+		fill_in('title', with: 'Makers Academy')
+		fill_in('tags', with: 'coding')
+		click_button 'Create Link'
+		visit('/links')
+		expect(page).to have_content('coding')
+	end
 end
