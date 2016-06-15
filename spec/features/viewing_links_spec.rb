@@ -1,5 +1,3 @@
-require 'capybara/rspec'
-
 feature 'View links' do
   scenario 'I can see links on the page' do
   	Link.create(url: 'https://www.bbc.com', title: "BBC")
