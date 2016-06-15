@@ -20,9 +20,11 @@ class BookmarkManager < Sinatra::Base
   post '/links' do
   	#params[:url] and params[:title] both look at the name inputs in add.erb
   	link = Link.new(url: params[:url], title: params[:title])
-  	tag = Tag.first_or_create(name: params[:tags])
-  	link.tags << tag
-  	link.save
+    tags = params[:tags].split(", ").each do |tag|
+      link.tags << Tag.first_or_create(name: tag)
+    end
+
+    link.save
   	redirect('/links')
   end
 
