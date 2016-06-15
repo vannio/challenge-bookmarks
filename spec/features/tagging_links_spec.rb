@@ -1,10 +1,6 @@
 feature 'Adding tags' do
 	scenario 'User is able to add a single tag to a web link' do
-		visit('/links/new')
-		fill_in('url', with: 'http://www.makersacademy.com/')
-		fill_in('title', with: 'Makers Academy')
-		fill_in('tags', with: 'coding')
-		click_button 'Create Link'
+	create_a_new_link
 
 		link = Link.first
 		expect(link.tags.map(&:name)).to include('coding')
@@ -26,11 +22,7 @@ feature 'Adding tags' do
 	end
 
 	scenario 'User is able to view tags on the link page' do
-		visit('/links/new')
-		fill_in('url', with: 'http://www.makersacademy.com/')
-		fill_in('title', with: 'Makers Academy')
-		fill_in('tags', with: 'coding')
-		click_button 'Create Link'
+		create_a_new_link
 		visit('/links')
 		expect(page).to have_content('coding')
 	end
