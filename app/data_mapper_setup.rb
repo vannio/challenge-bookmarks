@@ -2,6 +2,7 @@ require 'data_mapper'
 require 'dm-postgres-adapter'
 require_relative 'models/link'
 require_relative 'models/tag'
+require_relative 'models/user'
 
 #Sets up the connection with the database - localhost is where the information will be sent
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/bookmark_manager_#{ENV['RACK_ENV']}")

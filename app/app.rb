@@ -5,7 +5,7 @@ require_relative 'data_mapper_setup'
 
 class BookmarkManager < Sinatra::Base
   get '/' do
-    redirect '/links'
+  erb(:index)
   end
 
   get '/links' do
@@ -33,6 +33,12 @@ class BookmarkManager < Sinatra::Base
     @name = params[:name]
     @links = tag ? tag.links : []
     erb :'links/index'
+  end
+
+  post '/register' do
+    user = User.new(name: params[:name], password: params[:password], email: params[:email])
+    user.save
+    "Welcome #{user.name}"
   end
 
   run! if app_file == $0
