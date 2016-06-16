@@ -1,56 +1,45 @@
-feature 'Adding new users' do
-  scenario 'User count increments by 1 when user registers' do
-    expect{register_and_sign_in}.to change{User.all.length}.by 1
+feature "Adding new users" do
+  scenario "User count increments by 1 when user registers" do
+    fill_in_valid_register_form
+    expect{click_button("Register")}.to change{User.all.length}.by 1
   end
 
-  scenario 'Displays welcome message for newly registered users' do
-    register_and_sign_in
-    expect(page).to have_content('Welcome, Cameron')
+  scenario "Displays welcome message for newly registered users" do
+    fill_in_valid_register_form
+    click_button("Register")
+    expect(page).to have_content("Welcome, Van")
   end
 
-  scenario 'Email address submitted is the same as the one recorded in the database' do
-    register_and_sign_in
-    expect(User.first.email).to eq "cameron@gmail.com"
+  scenario "Email address submitted is the same as the one recorded in the database" do
+    fill_in_valid_register_form
+    click_button("Register")
+    expect(User.first.email).to eq "van@email.com"
   end
 
   scenario "User can't sign up without an email address" do
-    visit('/')
-    fill_in('name', with: 'Cameron')
-    fill_in('password', with: 'password')
-    fill_in('password_test', with: 'password')
-    fill_in('email', with: '')
-    click_button('Register')
+    fill_in_name
+    fill_in_matching_passwords
+    fill_in("email", with: "")
+    click_button("Register")
     expect(User.first).to be_nil
   end
 
-  scenario "User-provided email must be properly formatted" do
-    visit('/')
-    fill_in('name', with: 'Cameron')
-    fill_in('password', with: 'password')
-    fill_in('password_test', with: 'password')
-    fill_in('email', with: 'invalid@email')
-    click_button('Register')
+  scenario "Improperly formatted email address does not create a user" do
+    fill_in_name
+    fill_in_matching_passwords
+    fill_in("email", with: "invalid@email")
+    click_button("Register")
     expect(User.first).to be_nil
   end
 
-  scenario 'Different passwords do not create a user' do
-    visit('/')
-    fill_in('name', with: 'Cameron')
-    fill_in('password', with: 'password')
-    fill_in('password_test', with: 'not_the_same_password')
-    fill_in('email', with: 'cameron@gmail.com')
-    click_button('Register')
+  scenario "Different passwords do not create a user" do
+    fill_in_name
+    fill_in("password", with: "password")
+    fill_in("password_test", with: "not_the_same_password")
+    fill_in_valid_email
+    click_button("Register")
     expect(User.first).to be_nil
-  end
-
-  scenario "Different passwords display a flash error message" do
-    visit('/')
-    fill_in('name', with: 'Cameron')
-    fill_in('password', with: 'password')
-    fill_in('password_test', with: 'not_the_same_password')
-    fill_in('email', with: 'cameron@gmail.com')
-    click_button('Register')
-    expect(current_path).to eq '/'
-    expect(page).to have_content 'Password and confirmation do not match'
+    expect(current_path).to eq "/"
+    expect(page).to have_content "Password and confirmation do not match"
   end
 end

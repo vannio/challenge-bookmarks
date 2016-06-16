@@ -1,12 +1,12 @@
 <h1><a href="/links">Links <%= @name if @name %></a></h1>
 
-<ul id='links'>
+<ul id="links">
 	<% @links.each do |link| %>
 		<li>
-			Title: <a href='<%= link.url %>'><%= link.title %></a>
+			Title: <a href="<%= link.url %>"><%= link.title %></a>
 			URL: <%= link.url %>
 			Tags: <% link.tags.each do |tag| %>
-			<a href='/tags/<%= tag.name %>'><%= tag.name %></a>
+			<a href="/tags/<%= tag.name %>"><%= tag.name %></a>
 			<% end %>
 		</li>
 	<% end %>
