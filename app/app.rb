@@ -21,7 +21,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/links' do
-  	link = Link.new(url: params[:url], title: params[:title])
+  	link = Link.create(url: params[:url], title: params[:title])
     tags = params[:tags].split(", ").each do |tag|
       link.tags << Tag.first_or_create(name: tag)
     end
@@ -38,16 +38,16 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/register' do
-    user = User.create(name: params[:name], password: params[:password], email: params[:email])
+    user = User.create(name: params[:name], password: params[:password], password_test: params[:password_test], email: params[:email])
     session[:user_id] = user.id
     user.save
     redirect to('/links')
   end
 
   helpers do
-   def current_user
-     @current_user ||= User.get(session[:user_id])
-   end
+    def current_user
+      @current_user ||= User.get(session[:user_id])
+    end
   end
 
   run! if app_file == $0
