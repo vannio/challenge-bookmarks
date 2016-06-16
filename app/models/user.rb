@@ -6,7 +6,7 @@ class User
 
   property :id, Serial
   property :name, String
-  property :email, String, required: true
+  property :email, String, format: :email_address, required: true
   property :password_digest, String, length: 60
 
   attr_reader :password
