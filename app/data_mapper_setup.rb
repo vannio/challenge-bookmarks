@@ -1,5 +1,6 @@
 require 'data_mapper'
 require 'dm-postgres-adapter'
+require_relative 'lib/user'
 
 require_relative 'lib/tag'
 require_relative 'lib/link'
