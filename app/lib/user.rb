@@ -13,7 +13,12 @@ class User
   validates_confirmation_of :password
 
   property :id , Serial
-  property :email , String, :required => true, :format => :email_address
+  property :email , String, :required => true, :format => :email_address, :unique => true,
+  :messages => {
+  	:presence => "Email must not be blank",
+  	:is_unique => "E-mail address already registered.",
+  	:format => "Email has an invalid format"
+  }
   property :password_digest, String, length: 60
 
   def password=(password)
