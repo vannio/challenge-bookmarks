@@ -23,6 +23,16 @@ feature 'Adding new users' do
     expect(User.first).to be_nil
   end
 
+  scenario "User-provided email must be properly formatted" do
+    visit('/')
+    fill_in('name', with: 'Cameron')
+    fill_in('password', with: 'password')
+    fill_in('password_test', with: 'password')
+    fill_in('email', with: 'invalid@email')
+    click_button('Register')
+    expect(User.first).to be_nil
+  end
+
   scenario 'Different passwords do not create a user' do
     visit('/')
     fill_in('name', with: 'Cameron')
