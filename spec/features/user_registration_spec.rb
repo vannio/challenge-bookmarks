@@ -22,4 +22,15 @@ feature 'Adding new users' do
     click_button('Register')
     expect(User.first).to be_nil
   end
+
+  scenario "Different passwords display a flash error message" do
+    visit('/')
+    fill_in('name', with: 'Cameron')
+    fill_in('password', with: 'password')
+    fill_in('password_test', with: 'not_the_same_password')
+    fill_in('email', with: 'cameron@gmail.com')
+    click_button('Register')
+    expect(current_path).to eq '/'
+    expect(page).to have_content 'Password and confirmation do not match'
+  end
 end

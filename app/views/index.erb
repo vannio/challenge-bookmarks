@@ -7,3 +7,7 @@
   <input name='email' placeholder="name@domain.com" type='email'>
   <input type='submit' value='Register'>
 </form>
+
+<% if flash[:notice] %>
+  <div id='notice'><%= flash[:notice] %></div>
+<% end %>
