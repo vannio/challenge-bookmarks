@@ -3,7 +3,7 @@
 <form action="/users" method ="post">
 <label for = "email">
   E-mail:
-  <input type="text" name="email"/>
+  <input type="text" name="email" value='<%= @user.email %>'/>
 </label>
 <label for = "password">
   Password :
@@ -15,9 +15,3 @@
 </label>
 <input type="submit" value="Sign up">
 </form>
-
-<% if @password != @password_confirmation %>
-<BR>
-<BR>
-<h3> Re-enter password correctly </h3>
-<% end %>

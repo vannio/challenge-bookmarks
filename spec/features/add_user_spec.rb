@@ -16,15 +16,15 @@ feature 'Adding users' do
     expect(User.first.email).to eq 'bob@bob.com'
   end
 
-  scenario 'A new user types his password incorrectly' do
-    visit '/users/new'
-     fill_in 'email', with: 'bob@bob.com'
-     fill_in 'password', with: 'password'
-     fill_in 'password_confirmation', with: 'wrong password'
-     click_button 'Sign up'
-
-    expect(page).to have_content 'Re-enter password correctly'
-  end
+  # scenario 'A new user types his password incorrectly' do
+  #   visit '/users/new'
+  #    fill_in 'email', with: 'bob@bob.com'
+  #    fill_in 'password', with: 'password'
+  #    fill_in 'password_confirmation', with: 'wrong password'
+  #    click_button 'Sign up'
+  #   expect(current_path).to eq('/users/new')
+  #   expect(page).to have_content 'Re-enter password correctly'
+  # end
 
   scenario 'requires a matching confirmation password' do
     # again it's questionable whether we should be testing the model at this
