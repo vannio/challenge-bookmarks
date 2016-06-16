@@ -38,13 +38,25 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/users/new' do
+   if !session[:password_confirmation].nil?
+     @password = session[:password]
+     @password_confirmation = session[:password_confirmation]
+   end
    erb :'users/new'
   end
 
   post '/users' do
-    user = User.create(email: params[:email], password: params[:password])
+    user = User.create(email: params[:email],
+                      password: params[:password],
+                      password_confirmation: params[:password_confirmation])
     session[:user_id] = user.id
-    redirect '/links'
+    session[:password] = params[:password]
+    session[:password_confirmation] = params[:password_confirmation]
+    if params[:password] != params[:password_confirmation]
+      redirect 'users/new'
+    else
+      redirect '/links'
+    end
   end
 
   helpers do
@@ -53,7 +65,7 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
- 
+
 
 
   run! if app_file == $0

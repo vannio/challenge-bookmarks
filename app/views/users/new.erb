@@ -1,15 +1,23 @@
-
 <h2>Sign up with new user information</h2>
 <br>
 <form action="/users" method ="post">
 <label for = "email">
-  E-mail: 
-  <input type="text" name="email"/> 
+  E-mail:
+  <input type="text" name="email"/>
 </label>
-<label for = "password"> 
-  Password : 
-  <input type="password" name="password"/> 
+<label for = "password">
+  Password :
+  <input type="password" name="password"/>
+</label>
+<label for = "password_confirmation">
+  Password Confirmation :
+  <input type="password" name="password_confirmation"/>
 </label>
 <input type="submit" value="Sign up">
 </form>
 
+<% if @password != @password_confirmation %>
+<BR>
+<BR>
+<h3> Re-enter password correctly </h3>
+<% end %>
