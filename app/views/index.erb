@@ -9,5 +9,9 @@
 </form>
 
 <% if flash[:notice] %>
-  <div id="notice"><%= flash[:notice] %></div>
+  <ul id="notice">
+    <% flash[:notice].each do |notice| %>
+    <li><%= notice %></li>
+    <% end %>
+  </ul>
 <% end %>

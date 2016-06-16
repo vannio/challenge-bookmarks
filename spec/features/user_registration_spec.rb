@@ -22,6 +22,7 @@ feature "Adding new users" do
     fill_in("email", with: "")
     click_button("Register")
     expect(User.first).to be_nil
+    expect(page).to have_content "Email must not be blank"
   end
 
   scenario "Improperly formatted email address does not create a user" do
@@ -30,6 +31,7 @@ feature "Adding new users" do
     fill_in("email", with: "invalid@email")
     click_button("Register")
     expect(User.first).to be_nil
+    expect(page).to have_content "Email has an invalid format"
   end
 
   scenario "Different passwords do not create a user" do
@@ -40,6 +42,13 @@ feature "Adding new users" do
     click_button("Register")
     expect(User.first).to be_nil
     expect(current_path).to eq "/"
-    expect(page).to have_content "Password and confirmation do not match"
+    expect(page).to have_content "Password does not match the confirmation"
+  end
+
+  scenario "User can't register with an already registered email address" do
+    User.create(name: "Van", password: "password", password_test: "password", email: "van@email.com")
+    fill_in_valid_register_form
+    expect { click_button("Register") }.to_not change { User.all.count }
+    expect(page).to have_content "Email is already taken"
   end
 end
