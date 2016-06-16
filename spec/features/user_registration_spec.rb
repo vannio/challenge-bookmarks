@@ -8,9 +8,19 @@ feature 'Adding new users' do
     expect(page).to have_content('Welcome, Cameron')
   end
 
-  scenario 'Email address is correct' do
+  scenario 'Email address submitted is the same as the one recorded in the database' do
     register_and_sign_in
     expect(User.first.email).to eq "cameron@gmail.com"
+  end
+
+  scenario "User can't sign up without an email address" do
+    visit('/')
+    fill_in('name', with: 'Cameron')
+    fill_in('password', with: 'password')
+    fill_in('password_test', with: 'password')
+    fill_in('email', with: '')
+    click_button('Register')
+    expect(User.first).to be_nil
   end
 
   scenario 'Different passwords do not create a user' do
