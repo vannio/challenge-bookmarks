@@ -13,9 +13,8 @@ class User
   validates_confirmation_of :password
 
   property :id , Serial
-  property :email , String
+  property :email , String, :required => true, :format => :email_address
   property :password_digest, String, length: 60
-
 
   def password=(password)
     @password = password
