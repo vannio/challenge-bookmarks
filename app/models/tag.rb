@@ -5,5 +5,4 @@ class Tag
 
 	property :id, Serial
 	property :name, String
-
 end
