@@ -2,13 +2,12 @@
 <html>
   <head>
     <title>Bookmark Manager</title>
+    <link rel="stylesheet" href="/main.css">
   </head>
 
   <body>
     <% if current_user %>
       Welcome, <%= current_user.name %>
-    <% else %>
-    Please register an account
     <% end %>
     <%= yield %>
   </body>

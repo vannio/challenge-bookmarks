@@ -1,10 +1,23 @@
-<form method="post" action="/">
-  <label for="name">Name:
-    <input name="name" placeholder="Name" value="<%= @user.name if @user %>" type="text" id="name">
-  </label>
-  <input name="password" placeholder="Password" type="password">
-  <input name="password_test" placeholder="Password confirmation" type="password">
-  <input name="email" placeholder="name@domain.com" value="<%= @user.email if @user %>" type="email" required>
+<% unless current_user %>
+<h2>Sign in (existing user)</h2>
+<form method="post" action="/login" class="login">
+  <label for="loginEmail">Email address</label>
+  <input name="email" id="loginEmail" placeholder="name@domain.com" value="<%= @user.email if @user %>" type="email" required>
+  <label for="loginPassword">Password</label>
+  <input name="password" id="loginPassword" type="password" required>
+  <input type="submit" value="Sign In">
+</form>
+
+<h2>Register (new user)</h2>
+<form method="post" action="/" class="register">
+  <label for="regName">Name</label>
+  <input name="name" value="<%= @user.name if @user %>" type="text" id="regName" required>
+  <label for="regPassword">Password</label>
+  <input name="password" id="regPassword" type="password" required>
+  <label for="regPasswordConfirm">Retype password</label>
+  <input name="password_test" id="regPasswordConfirm" type="password" required>
+  <label for="regEmail">Email address</label>
+  <input name="email" id="regEmail" placeholder="name@domain.com" value="<%= @user.email if @user %>" type="email" required>
   <input type="submit" value="Register">
 </form>
 
@@ -14,4 +27,6 @@
     <li><%= notice %></li>
     <% end %>
   </ul>
+<% end %>
+
 <% end %>

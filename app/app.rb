@@ -2,7 +2,7 @@ ENV["RACK_ENV"] ||= "development"
 require "sinatra/base"
 require "sinatra/flash"
 require_relative "data_mapper_setup"
-
+require "bcrypt"
 
 class BookmarkManager < Sinatra::Base
   enable :sessions
@@ -21,6 +21,17 @@ class BookmarkManager < Sinatra::Base
       redirect "/links"
     else
       flash.now[:notice] = @user.errors.full_messages
+      erb(:index)
+    end
+  end
+
+  post "/login" do
+    @user = User.first(email: params[:email])
+    if User.authenticate(params[:email], params[:password])
+      session[:user_id] = @user.id
+      redirect to('/links')
+    else
+      flash.now[:notice] = ["Email address/Password combination is incorrect"]
       erb(:index)
     end
   end

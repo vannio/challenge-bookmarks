@@ -7,7 +7,6 @@ def create_a_new_link
 end
 
 def fill_in_name
-  visit("/")
   fill_in("name", with: "Van")
 end
 
