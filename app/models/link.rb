@@ -1,13 +1,12 @@
-# A class which sets up the properties that we want our tables to have
+require 'data_mapper'
+require 'dm-postgres-adapter'
+
 class Link
-	# Datamapper allows us to communicate with the database subject using ruby syntax
-	include DataMapper::Resource
+  include DataMapper::Resource
 
-	# Adds a series of methods to models which allow users to create relationships and retreive related models
-	has(n, :tags, through: Resource)
+  has n, :tags, through: Resource
 
-	# Setting the column headers for our table
-	property :id, Serial
-	property :title, String
-	property :url, String
+  property :id , Serial
+  property :title , String
+  property :url , String
 end

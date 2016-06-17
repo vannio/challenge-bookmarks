@@ -1,12 +1,13 @@
-require "data_mapper"
-require "dm-postgres-adapter"
-require_relative "models/link"
-require_relative "models/tag"
-require_relative "models/user"
+require 'data_mapper'
+require 'dm-postgres-adapter'
 
-#Sets up the connection with the database - localhost is where the information will be sent
-DataMapper.setup(:default, ENV["DATABASE_URL"] || "postgres://localhost/bookmark_manager_#{ENV['RACK_ENV']}")
-#Checks that everything works - An error should come up in the terminal if something is incorrect
+require_relative 'models/user'
+require_relative 'models/tag'
+require_relative 'models/link'
+
+#set up a connection with the database
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/bookmark_manager_#{ENV["RACK_ENV"]}")
+#checking that everything we wrote / the way we structured it is correct
 DataMapper.finalize
-#Builds the table according to our previous code
+#build the columsn and rows
 DataMapper.auto_upgrade!

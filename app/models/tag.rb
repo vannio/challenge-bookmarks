@@ -1,7 +1,11 @@
-class Tag
-	include DataMapper::Resource
-	has(n, :links, through: Resource)
+require 'data_mapper'
+require 'dm-postgres-adapter'
 
-	property :id, Serial
-	property :name, String
+class Tag
+  include DataMapper::Resource
+
+  has n, :links, through: Resource
+
+  property :id , Serial
+  property :name , String
 end

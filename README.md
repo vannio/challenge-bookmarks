@@ -1,4 +1,4 @@
-# Bookmark Manager
+# Bookmark Manager Exercise
 
 ## Task
 Create a CRUDdy bookmark manager with Sinatra and Postgres

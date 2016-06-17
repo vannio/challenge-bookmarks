@@ -81,6 +81,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rake (10.4.2)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -96,14 +97,14 @@ GEM
     rspec-sinatra (0.1.2)
       templater (>= 1.0.0)
     rspec-support (3.4.1)
-    shotgun (0.9.1)
-      rack (>= 1.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
+    sinatra-partial (1.0.0)
+      sinatra (~> 1.4)
     stringex (1.5.1)
     templater (1.0.0)
       diff-lcs (>= 1.1.2)
@@ -118,16 +119,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt
   capybara
   data_mapper
   database_cleaner
   dm-postgres-adapter
+  rake
   rspec
   rspec-sinatra
-  shotgun
   sinatra
   sinatra-flash
+  sinatra-partial
 
 RUBY VERSION
    ruby 2.3.1p112
