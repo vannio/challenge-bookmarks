@@ -1,3 +1,4 @@
+<% unless current_user %>
 <form action="/" method="post">
   <label for="email">
     Email:
@@ -9,3 +10,10 @@
   </label>
   <input type="submit" value="Sign in">
 </form>
+or <a href="/users/new">Sign up</a>
+<% else %>
+<ul id="menu">
+  <li><a href="/links">View links</a></li>
+  <li><a href="/links/new">Add new link</a></li>
+</ul>
+<% end %>
