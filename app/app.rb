@@ -1,6 +1,7 @@
 ENV["RACK_ENV"] ||= "development"
 require 'sinatra/base'
 require 'sinatra/flash'
+require 'bcrypt'
 
 require_relative 'data_mapper_setup'
 
@@ -14,7 +15,14 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/' do
-    redirect '/links'
+    user = User.authenticate(params[:registered_email], params[:registered_password])
+    if user
+      session[:user_id] = user.id
+      redirect '/links'
+    else
+      flash[:errors] = ['The email/password combination is incorrect']
+      redirect '/'
+    end
   end
 
   get '/links' do
