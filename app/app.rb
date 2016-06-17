@@ -10,7 +10,11 @@ class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
-  	redirect '/links'
+    erb :index
+  end
+
+  post '/' do
+    redirect '/links'
   end
 
   get '/links' do
@@ -29,8 +33,6 @@ class BookmarkManager < Sinatra::Base
       tag = Tag.first_or_create(name: name)
       LinkTag.create(link: link, tag: tag)
     end
-    #link.tags << tag
-    #link.save
     redirect '/links'
   end
 
@@ -41,10 +43,6 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/users/new' do
-   # if !session[:password_confirmation].nil?
-   #   @password = session[:password]
-   #   @password_confirmation = session[:password_confirmation]
-   # end
    @user = User.new
    erb :'users/new'
   end
@@ -57,7 +55,7 @@ class BookmarkManager < Sinatra::Base
     if @user.save
       session[:user_id] = @user.id
       redirect '/links'
-    else 
+    else
       flash.now[:errors] = @user.errors.full_messages
       erb :'users/new'
     end
@@ -68,9 +66,6 @@ class BookmarkManager < Sinatra::Base
       @current_user ||= User.get(session[:user_id])
     end
   end
-
-
-
 
   run! if app_file == $0
 end
