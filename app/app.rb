@@ -9,6 +9,7 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
   set :session_secret, 'super_secret'
   register Sinatra::Flash
+  use Rack::MethodOverride
 
   get '/' do
     erb :index
@@ -70,7 +71,7 @@ class BookmarkManager < Sinatra::Base
    erb :'users/new'
   end
 
-  post '/session/end' do
+  delete '/sessions' do
     session[:user_id] = nil
     flash[:messages] = ["Successfully signed out"]
     redirect '/'

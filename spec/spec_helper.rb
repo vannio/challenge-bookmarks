@@ -5,6 +5,7 @@ require 'capybara/rspec'
 require './app/lib/link'
 require './app/lib/user'
 require './app/app'
+require_relative 'helpers/sessions'
 
 Capybara.app = BookmarkManager
 
@@ -30,6 +31,9 @@ Capybara.app = BookmarkManager
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
+  config.include SessionHelpers
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
