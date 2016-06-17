@@ -1,6 +1,6 @@
 feature 'allow user to sign in' do
   scenario 'user can sign in from any page' do
-    sign_up
+    user_create
     visit '/'
     fill_in :registered_email, with: 'bob@bob.com'
     fill_in :registered_password, with: 'password'
@@ -9,7 +9,7 @@ feature 'allow user to sign in' do
   end
 
   scenario 'returns a flash message if user doesn\'t exist' do
-    sign_up
+    user_create    
     visit '/'
     fill_in :registered_email, with: 'bob@bob.com'
     fill_in :registered_password, with: 'wrong_password'

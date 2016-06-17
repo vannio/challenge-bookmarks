@@ -8,13 +8,15 @@
 
   <% if current_user %>
     <p>Welcome, <%= current_user.email %></p>
+    <form action="/session/end" method="post">
+      <input type="submit" value="Sign out">
+    </form>
   <% end %>
 
-  <% if flash[:errors] && !flash[:errors].empty? %>
-    Please refer to the following errors below:
-    <ul id='errors'>
-    <% flash[:errors].each do |error| %>
-      <li><%= error %></li>
+  <% if flash[:messages] && !flash[:messages].empty? %>
+    <ul id='messages'>
+    <% flash[:messages].each do |message| %>
+      <li><%= message %></li>
     <% end %>
     </ul>
   <% end %>
