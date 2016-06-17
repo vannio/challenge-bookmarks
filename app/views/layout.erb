@@ -6,21 +6,8 @@
 
   <body>
 
-  <% if current_user %>
-    <p>Welcome, <%= current_user.email %></p>
-    <form action="/sessions" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Sign out">
-    </form>
-  <% end %>
-
-  <% if flash[:messages] && !flash[:messages].empty? %>
-    <ul id='messages'>
-    <% flash[:messages].each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  <% end %>
+  <%= partial :welcome %>
+  <%= partial :flash %>
 
   <%= yield %>
 
